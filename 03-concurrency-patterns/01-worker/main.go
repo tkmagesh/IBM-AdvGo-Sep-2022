@@ -12,7 +12,7 @@ type MyWork struct {
 }
 
 //implementation of the worker.Work interface
-func (myWork *MyWork) Task() {
+func (myWork MyWork) Task() {
 	fmt.Println("task started - ", myWork.Id)
 	time.Sleep(time.Duration(rand.Intn(2000)) * time.Millisecond)
 	fmt.Println("task completed - ", myWork.Id)
