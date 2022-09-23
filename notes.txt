@@ -69,3 +69,7 @@ Data Types
 Concurrency
     - Never assume the time taken for a goroutine to execute
     - Never assume the sequence of execution of the goroutines
+
+    Channel
+        - A receive operation is ALWAYS a blocking operation
+        - A send operation is blocked until a receive operation is initialized (non-buffered channel)
