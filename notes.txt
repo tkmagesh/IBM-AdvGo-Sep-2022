@@ -17,4 +17,27 @@ About You:
     Experience in Go
     Have you attended MY basics class?
 
-7
+Repository:
+    https://github.com/tkmagesh/IBM-AdvGo-Sep-2022
+
+
+Basics:
+    Simplicity
+        Everything is a value (No reference types)
+        No classes (Only struct)
+        Only One loop construct
+        Compilation restrictions
+            Unused variables are not allowed (at function scope)
+        Cross platform Compilation
+        
+        No exceptions (ONLY errors)
+            No try catch finally block support
+
+        Functions
+            Anonymous functions
+            Higher Order functions
+            deferred functions
+
+        Panic & recovery
+
+    Concurrency
