@@ -73,3 +73,4 @@ Concurrency
     Channel
         - A receive operation is ALWAYS a blocking operation
         - A send operation is blocked until a receive operation is initialized (non-buffered channel)
+        - A send operation is NOT blocked if the buffer is not full (buffered channel)
