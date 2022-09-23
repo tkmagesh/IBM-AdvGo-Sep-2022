@@ -5,6 +5,7 @@ import (
 	"io"
 	"log"
 	"math/rand"
+	"pool-demo/pool"
 	"sync"
 	"time"
 )
@@ -95,7 +96,7 @@ func main() {
 
 func doWork(id int, p *pool.Pool) {
 	conn, err := p.Acquire()
-	if err {
+	if err != nil {
 		log.Fatalln(err)
 	}
 	fmt.Printf("Worker : %d Acquired : %d\n", id, conn.(*DBConnection).ID)
