@@ -1,0 +1,20 @@
+Magesh Kuppan
+
+Schedule:
+    Commence    : 9:30 AM
+    Tea Break   : 10:30 AM (20 mins)
+    Lunch Break : 1:00 PM (1 hr)
+    Tea Break   : 3:30 PM (20 mins)
+    Wind Up     : 5:30 PM
+
+Methodolgy:
+    No powerpoints
+    100% hands on training
+
+About You:
+    Name
+    Primary Skillset
+    Experience in Go
+    Have you attended MY basics class?
+
+7
