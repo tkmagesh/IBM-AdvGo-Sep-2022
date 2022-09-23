@@ -58,7 +58,6 @@ func main() {
 	increment := getIncrement()
 	fmt.Println(increment())
 	fmt.Println(increment())
-	counter = 100
 	fmt.Println(increment())
 	fmt.Println(increment())
 }

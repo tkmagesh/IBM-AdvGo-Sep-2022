@@ -66,4 +66,6 @@ Data Types
     byte (alias for uint8)
     rune (alias for int32) (unicode character code point)
     
-    Concurrency
+Concurrency
+    - Never assume the time taken for a goroutine to execute
+    - Never assume the sequence of execution of the goroutines
