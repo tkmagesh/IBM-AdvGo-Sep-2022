@@ -29,7 +29,10 @@ func main() {
 	//doServerStreaming(ctx, client)
 
 	//client streaming
-	doClientStreaming(ctx, client)
+	//doClientStreaming(ctx, client)
+
+	//bidirectional streaming
+	doBiDirectionalStreaming(ctx, client)
 }
 
 func doRequestResponse(ctx context.Context, client proto.AppServiceClient) {
@@ -89,4 +92,39 @@ func doClientStreaming(ctx context.Context, client proto.AppServiceClient) {
 		log.Fatalln(err)
 	}
 	fmt.Println("Average : ", resp.GetResult())
+}
+
+func doBiDirectionalStreaming(ctx context.Context, client proto.AppServiceClient) {
+	personNames := []proto.PersonName{
+		proto.PersonName{FirstName: "Magesh", LastName: "Kuppan"},
+		proto.PersonName{FirstName: "Suresh", LastName: "Kannan"},
+		proto.PersonName{FirstName: "Rajesh", LastName: "Pandit"},
+		proto.PersonName{FirstName: "Ganesh", LastName: "Kumar"},
+		proto.PersonName{FirstName: "Ramesh", LastName: "Jayaraman"},
+	}
+	clientStream, err := client.Greet(ctx)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	done := make(chan struct{})
+	go func() {
+		for {
+			resp, err := clientStream.Recv()
+			if err != nil {
+				fmt.Println(err)
+				done <- struct{}{}
+				break
+			}
+			fmt.Println(resp.GetGreetMessage())
+		}
+	}()
+	for _, personName := range personNames {
+		time.Sleep(500 * time.Millisecond)
+		req := &proto.GreetRequest{
+			Person: &personName,
+		}
+		fmt.Println("Sending : ", personName.FirstName, personName.LastName)
+		clientStream.Send(req)
+	}
+	<-done
 }
