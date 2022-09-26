@@ -81,3 +81,31 @@ Assignment:
     Modify the pool api in such a way that the number of resources created is equivalent to the pool size
 
 
+gRPC
+    http2 protocol
+    protobuf 
+    Support for many language
+    Suitable for inter-service communication in microservices architecture
+
+    Stub
+    Proxy
+    Protobuf definitions are shared between the client and the server
+        Service Description
+        Operation Description
+        Data Descriptions
+
+    Installation
+        go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+        go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+
+        (when the above is installed, executables are created in the gopath/bin folder. Make sure this path is set in environment variables)
+
+        Windows
+            Install the binaries from https://github.com/protocolbuffers/protobuf/releases/
+
+        Mac
+            brew install protoc-gen-go
+            brew install protoc-gen-go-grpc
+
+    Installation verification
+        protoc --version
