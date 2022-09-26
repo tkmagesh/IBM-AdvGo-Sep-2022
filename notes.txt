@@ -90,9 +90,16 @@ gRPC
     Stub
     Proxy
     Protobuf definitions are shared between the client and the server
-        Service Description
-        Operation Description
-        Data Descriptions
+        Service Contracts
+        Operation Contracts
+        Message Contracts
+
+    Communication Patterns
+        - Request & Request
+        - Client Streaming (many requests & one response)
+        - Server Streaming (one request & many responses)
+        - Bidirectional Streaming (many requests & many responses)
+        
 
     Installation
         go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
