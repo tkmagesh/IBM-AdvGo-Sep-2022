@@ -74,3 +74,10 @@ Concurrency
         - A receive operation is ALWAYS a blocking operation
         - A send operation is blocked until a receive operation is initialized (non-buffered channel)
         - A send operation is NOT blocked if the buffer is not full (buffered channel)
+
+
+Assignment:
+    As of now, there is not limit on the number of resources that can be created using the pool
+    Modify the pool api in such a way that the number of resources created is equivalent to the pool size
+
+
