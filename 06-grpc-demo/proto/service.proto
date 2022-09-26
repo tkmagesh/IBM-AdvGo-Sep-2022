@@ -12,6 +12,7 @@ message AddRequest{
 
 message AddResponse{
     int32 result = 1;
+    repeated int32 dummy = 2;
 }
 
 /* service contract */

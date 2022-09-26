@@ -20,6 +20,7 @@ func (asi *appServerImpl) Add(ctx context.Context, req *proto.AddRequest) (*prot
 	result := x + y
 	res := &proto.AddResponse{
 		Result: result,
+		Dummy:  []int32{10, 20, 30, 40},
 	}
 	fmt.Printf("Processing %d and %d & returning result %d\n", x, y, result)
 	return res, nil

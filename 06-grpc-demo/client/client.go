@@ -28,5 +28,6 @@ func main() {
 		log.Fatalln(err)
 	}
 	fmt.Println(res.GetResult())
+	fmt.Println(res.GetDummy())
 
 }
