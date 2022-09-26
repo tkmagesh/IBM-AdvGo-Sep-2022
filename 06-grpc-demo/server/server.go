@@ -6,6 +6,7 @@ import (
 	"grpc-demo/proto"
 	"log"
 	"net"
+	"time"
 
 	"google.golang.org/grpc"
 )
@@ -24,6 +25,31 @@ func (asi *appServerImpl) Add(ctx context.Context, req *proto.AddRequest) (*prot
 	}
 	fmt.Printf("Processing %d and %d & returning result %d\n", x, y, result)
 	return res, nil
+}
+
+func (asi *appServerImpl) GeneratePrimes(req *proto.PrimeRequest, serverStream proto.AppService_GeneratePrimesServer) error {
+	start := req.GetStart()
+	end := req.GetEnd()
+	for no := start; no <= end; no++ {
+		if isPrime(no) {
+			time.Sleep(500 * time.Millisecond)
+			fmt.Printf("Sending Prime no : %d\n", no)
+			resp := &proto.PrimeResponse{
+				PrimeNo: no,
+			}
+			serverStream.Send(resp)
+		}
+	}
+	return nil
+}
+
+func isPrime(no int32) bool {
+	for i := int32(2); i <= (no / 2); i++ {
+		if no%i == 0 {
+			return false
+		}
+	}
+	return true
 }
 
 func main() {
