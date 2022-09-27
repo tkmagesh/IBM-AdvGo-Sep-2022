@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"grpc-demo/proto"
 	"io"
@@ -21,13 +22,23 @@ func (asi *appServerImpl) Add(ctx context.Context, req *proto.AddRequest) (*prot
 	y := req.GetY()
 	result := x + y
 	fmt.Println("Service processing the request......")
-	time.Sleep(5 * time.Second)
-	res := &proto.AddResponse{
-		Result: result,
-		Dummy:  []int32{10, 20, 30, 40},
+	processTimeCh := time.After(5 * time.Second)
+
+	for {
+		select {
+		case <-ctx.Done():
+			fmt.Println("Cancel request received from the client. Discarding the processing...")
+			return nil, errors.New("client cancelled the request")
+		case <-processTimeCh:
+			res := &proto.AddResponse{
+				Result: result,
+				Dummy:  []int32{10, 20, 30, 40},
+			}
+			fmt.Printf("Processing %d and %d & returning result %d\n", x, y, result)
+			return res, nil
+		}
 	}
-	fmt.Printf("Processing %d and %d & returning result %d\n", x, y, result)
-	return res, nil
+	return nil, nil
 }
 
 func (asi *appServerImpl) GeneratePrimes(req *proto.PrimeRequest, serverStream proto.AppService_GeneratePrimesServer) error {
