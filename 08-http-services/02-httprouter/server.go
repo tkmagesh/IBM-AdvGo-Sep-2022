@@ -3,7 +3,9 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
+	"time"
 
 	"github.com/julienschmidt/httprouter"
 )
@@ -21,6 +23,24 @@ func init() {
 		{101, "Pen", 10},
 		{102, "Pencil", 5},
 		{103, "Marker", 50},
+	}
+}
+
+func logger(handle httprouter.Handle) httprouter.Handle {
+	return func(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+		log.Printf("%s - %s\n", r.Method, r.URL)
+		handle(w, r, params)
+	}
+}
+
+func profile(handle httprouter.Handle) httprouter.Handle {
+	return func(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+		start := time.Now()
+		defer func() {
+			elapsed := time.Since(start)
+			fmt.Printf("%s - time taken %v: ", r.URL, elapsed)
+		}()
+		handle(w, r, params)
 	}
 }
 
@@ -59,8 +79,8 @@ func postProductsHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Pa
 func main() {
 	router := httprouter.New()
 	router.GET("/", indexHandler)
-	router.GET("/products", getProductsHandler)
-	router.GET("/products/:id", getProductHandler)
-	router.POST("/products", postProductsHandler)
+	router.GET("/products", profile(logger(getProductsHandler)))
+	router.GET("/products/:id", profile(logger(getProductHandler)))
+	router.POST("/products", profile(logger(postProductsHandler)))
 	http.ListenAndServe(":8080", router)
 }

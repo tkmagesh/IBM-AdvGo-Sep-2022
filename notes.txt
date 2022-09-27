@@ -129,5 +129,8 @@ Http Services
     2. Using 3rd party routing libraries (httprouter)
         Complete the getProductHandler function
         Implement the delete product functionality
+    3. Web Frameworks
+        Gin
+        GORM (ORM)
 
 http://localhost:8080/products/100
