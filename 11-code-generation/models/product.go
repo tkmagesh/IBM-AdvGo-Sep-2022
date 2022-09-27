@@ -1,6 +1,7 @@
 package models
 
 //go:generate go run ../col-gen.go -N Product -P models
+//go:generate go fmt Products.go
 type Product struct {
 	Id       int
 	Name     string

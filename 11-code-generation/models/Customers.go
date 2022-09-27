@@ -1,5 +1,5 @@
-
 package models
+
 type Customers []Customer
 
 func (items *Customers) IndexOf(item Customer) int {
@@ -23,7 +23,6 @@ func (items *Customers) Any(criteria func(Customer) bool) bool {
 	}
 	return false
 }
-
 
 func (items Customers) Filter(predicate func(item Customer) bool) Customers {
 	result := Customers{}

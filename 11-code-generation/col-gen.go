@@ -12,25 +12,25 @@ package {{.PkgName}}
 type {{.TypeName}}s []{{.TypeName}}
 
 func (items *{{.TypeName}}s) IndexOf(item {{.TypeName}}) int {
-	for idx, p := range *items {
-		if p == item {
-			return idx
-		}
-	}
-	return -1
+for idx, p := range *items {
+if p == item {
+return idx
+}
+}
+return -1
 }
 
 func (items *{{.TypeName}}s) Includes(item {{.TypeName}}) bool {
-	return items.IndexOf(item) != -1
+return items.IndexOf(item) != -1
 }
 
 func (items *{{.TypeName}}s) Any(criteria func({{.TypeName}}) bool) bool {
-	for _, item := range *items {
-		if criteria(item) {
-			return true
-		}
-	}
-	return false
+for _, item := range *items {
+if criteria(item) {
+return true
+}
+}
+return false
 }
 
 

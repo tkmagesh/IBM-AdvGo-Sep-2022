@@ -1,5 +1,5 @@
-
 package models
+
 type Products []Product
 
 func (items *Products) IndexOf(item Product) int {
@@ -23,7 +23,6 @@ func (items *Products) Any(criteria func(Product) bool) bool {
 	}
 	return false
 }
-
 
 func (items Products) Filter(predicate func(item Product) bool) Products {
 	result := Products{}
