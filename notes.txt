@@ -134,3 +134,9 @@ Http Services
         GORM (ORM)
 
 http://localhost:8080/products/100
+
+Testing
+go test ./... -v
+
+Benchmark
+    go test -bench=. -benchmem -benchtime=10s
