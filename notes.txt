@@ -122,3 +122,12 @@ gRPC
 
     
     Exhibit an operation (GeneratePrimes) that generates the prime numbers between the given 'start' and 'end'
+
+
+Http Services
+    1. Using the native apis
+    2. Using 3rd party routing libraries (httprouter)
+        Complete the getProductHandler function
+        Implement the delete product functionality
+
+http://localhost:8080/products/100
