@@ -20,6 +20,8 @@ func (asi *appServerImpl) Add(ctx context.Context, req *proto.AddRequest) (*prot
 	x := req.GetX()
 	y := req.GetY()
 	result := x + y
+	fmt.Println("Service processing the request......")
+	time.Sleep(5 * time.Second)
 	res := &proto.AddResponse{
 		Result: result,
 		Dummy:  []int32{10, 20, 30, 40},
